@@ -1,4 +1,6 @@
-Millicores,RAM,Time
-4000,4000,0
-2632,8000,1
-2845,0300,0
+Millicores,RAM,Time,Requires Video Card
+4000,4000,00000,True
+2632,8000,00000,False
+2845,0300,00000,True
+6000,6000,00020,True
+0200,0100,00360,False

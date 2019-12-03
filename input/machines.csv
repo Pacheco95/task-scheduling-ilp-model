@@ -1,3 +1,5 @@
-Max RAM,Ram Usage,Millicores,Millicores Usage
-06000,0.00,06000,0.00
-02000,0.00,01000,0.00
+Max RAM,Ram Usage,Millicores,Millicores Usage,Contains Video Card
+06000,0.00,06000,0.00,True
+02000,0.00,01000,0.00,False
+01000,0.10,01000,0.15,False
+16000,0.85,16000,0.85,True
