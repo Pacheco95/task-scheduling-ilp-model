@@ -11,6 +11,7 @@ def load_tasks(file_path: str) -> [Task]:
 
     tasks = []
 
+    # noinspection PyTypeChecker
     constructor_parameter_types = ((ResourceConstraints,) * 3 + (str2bool,))
 
     for line in lines[1:]:
