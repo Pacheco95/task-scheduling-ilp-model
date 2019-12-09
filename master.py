@@ -21,7 +21,7 @@ Yjk: Dict[Tuple, Var] = {}
 # 1, if task i will be executed by machine j using pattern k. 0, otherwise.
 Yijk: Dict[Tuple, Var] = {}
 
-# Objective functionMaximize
+# Objective function
 # Maximize the number of scheduled tasks
 master += xsum(Yijk[i, j, k] for i in machines_it for j in tasks_it for k in K[j])
 
@@ -31,6 +31,4 @@ for j in machines_it:
 
 # Ensure that a task will be executed by at most one machine
 for i in tasks_it:
-    for j in machines_it:
-        for k in K[j]:
-            master += xsum(Yijk[i, j, k]) <= 1
+    master += xsum(Yijk[i, j, k] for j in machines_it for k in K[j]) <= 1
