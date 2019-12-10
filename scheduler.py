@@ -33,7 +33,7 @@ def schedule(tasks: List[Task], machines: List[Machine]) -> List[Tuple[int, int]
     for i, task in enumerate(tasks):
         for j, machine in enumerate(machines):
             # TODO penalty unbalance
-            scheduling_model += x[i, j] * (INF - task.time_constr.desired)
+            scheduling_model.objective += x[i, j] * (INF - task.time_constr.desired)
 
     # Ensure that one task will be scheduled to 1 machine at maximum
     for i in tasks_it:
