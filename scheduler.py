@@ -2,10 +2,10 @@ from mip import *
 
 from entities import Task, Machine
 
-INF = 10e3
+INF = int(3e6)
 
 
-def schedule(tasks: List[Task], machines: List[Machine]) -> List[Tuple[int, int]]:
+def schedule(tasks: List[Task], machines: List[Machine]):
     """
     Schedule tasks into machines
     :param tasks: Tasks to be scheduled
@@ -30,10 +30,12 @@ def schedule(tasks: List[Task], machines: List[Machine]) -> List[Tuple[int, int]
             x[i, j] = scheduling_model.add_var(var_type=BINARY, name=var_name)
 
     # Objective function
+    objective_function = LinExpr()
     for i, task in enumerate(tasks):
         for j, machine in enumerate(machines):
             # TODO penalty unbalance
-            scheduling_model.objective += x[i, j] * (INF - task.time_constr.desired)
+            objective_function += x[i, j]
+    scheduling_model.objective = objective_function
 
     # Ensure that one task will be scheduled to 1 machine at maximum
     for i in tasks_it:
@@ -60,4 +62,4 @@ def schedule(tasks: List[Task], machines: List[Machine]) -> List[Tuple[int, int]
 
     scheduled_tasks = dict(filter(lambda elem: elem[1].x == 1, x.items()))
 
-    return list(map(lambda elem: (elem[0] + 1, elem[1] + 1), scheduled_tasks.keys()))
+    return scheduled_tasks, list(map(lambda elem: (elem[0] + 1, elem[1] + 1), scheduled_tasks.keys()))

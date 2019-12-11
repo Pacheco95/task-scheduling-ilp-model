@@ -48,8 +48,8 @@ class Machine:
         self.has_video_card = has_video_card
 
     def __str__(self):
-        return 'RAM_CAP: %-10s RAM_USAGE: %-6s MILLICORES: %-10s MILLICORES_USAGE %s'\
-               % (self.ram_capacity, self.ram_usage, self.millicores,  self.millicores_usage)
+        return 'RAM_CAP: %-10s RAM_USAGE: %-6s MILLICORES: %-10s MILLICORES_USAGE %-6s VCARD %s'\
+               % (self.ram_capacity, self.ram_usage, self.millicores,  self.millicores_usage, self.has_video_card)
 
     def __repr__(self):
         return self.__str__()
